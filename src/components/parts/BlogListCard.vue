@@ -10,7 +10,7 @@ const blogData = props.blogData;
 
 <template>
 
-<p>{{ blogData.title }}</p>
+<p>{{ blogData.id }}</p>
 
 </template>
 

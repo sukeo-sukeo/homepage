@@ -4,14 +4,12 @@ import { appOpt } from "../config/app.js";
 const URL = appOpt.url;
 
 class BlogFinder {
-  constructor() {
-
-  }
-
-  async getFullData(url=URL) {
-    const result = await axios.get(url, {params: {page: 2}});
+  async getFullData(page = 1, url = URL) {
+    const result = await axios.get(url, { params: { page } });
     console.log(result.data);
-    return result.data
+    const blogs = result.data.result;
+    const maxPage = result.data.maxPage;
+    return [blogs, maxPage];
   }
 }
 

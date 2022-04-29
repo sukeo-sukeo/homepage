@@ -2,12 +2,17 @@
 import { onMounted, ref } from "vue";
 import { BlogFinder } from "../lib/BlogFinder.js";
 
-import BlogListCard from "./shared/BlogListCard.vue";
+import BlogListCard from "./parts/BlogListCard.vue";
+import Pagination from "./parts/Pagination.vue";
+
 
 const bf = new BlogFinder();
 const blogDataList = ref("");
+const maxPage = ref("");
 
-onMounted(async() => blogDataList.value = await bf.getFullData());
+onMounted(async() => [blogDataList.value, maxPage.value] = await bf.getFullData());
+
+const pnClick = async (page) => [blogDataList.value, maxPage.value] = await bf.getFullData(page);
 
 </script>
 
@@ -22,6 +27,9 @@ onMounted(async() => blogDataList.value = await bf.getFullData());
            :blogData=blogData />
         </li>
       </ul>
+      <Pagination
+       :maxPage=maxPage
+       @pn-click=pnClick />
     </v-main>
   </v-app>
 </template>
