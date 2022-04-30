@@ -7,14 +7,14 @@ const props = defineProps({
 
 const blogData = props.blogData;
 const url = appOpt.imgUrl;
-console.log(url);
+
 </script>
 
 <template>
 
 <v-card class="ma-3 d-flex">
   <div>
-    <v-img :src="`${url}/${blogData.thumnail.slice(2)}`" :alt="blogData.thumnail_seo" width="200"></v-img>
+    <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="200"></v-img>
     <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
   </div>
   <div>
@@ -31,12 +31,10 @@ console.log(url);
     </v-chip>
     <div class="d-flex">
       <v-card-text>
-        {{blogData.created.split("T")[0]}}
+        {{blogData.created}}
       </v-card-text>
       <v-card-text>
-        {{blogData.updated.includes("T") ? 
-        blogData.updated.split("T")[0] : 
-        "" }}
+        {{blogData.updated}}
       </v-card-text>
     </div>
   </div>

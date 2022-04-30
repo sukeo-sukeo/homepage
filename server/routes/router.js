@@ -1,54 +1,41 @@
 import express from "express";
 import { db } from "../lib/dbconnect.js";
 import { appOpt } from "../config/app.js";
+import { sql } from "../lib/sql.js";
+import { mold } from "../lib/liblary.js";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  let sql;
   let page = Number(req.query.page);
   let parPage = appOpt.parPage;
+  let query;
 
   // parPage分の件数のデータを取得
   page = page ? page : 1;
+  query = sql.getFullData; 
   const start = (page - 1) * parPage;
-  sql = `select 
-  b.id as id, b.title, b.created, b.updated, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
-  from blog b
-  left join blog_tag btg on btg.blog_id = b.id
-  left join tag on btg.tag_id = tag.id
-  left join blog_thumnail bt on b.id = bt.blog_id
-  left join blog_category bc on b.id = bc.blog_id
-  left join img on bt.img_id = img.id
-  left join category cate on bc.category_id = cate.id
-  group by b.id
-  order by b.created desc
-  limit ?, ${parPage}`;
-  const result = await db.query(sql, [start]);
+  let result = await db.query(query, [start, parPage]);
+  
+  // 成形
+  result = mold(result);
 
   // maxpageを計算
-  sql = "select count(*) as cnt from blog";
-  const count = await db.query(sql);
+  query = sql.getFullDataCount;
+  const count = await db.query(query);
   const maxPage = Math.floor((count[0].cnt + 1) / parPage + 1);
 
   res.send({ result, maxPage });
 });
 
 router.get("/content", async (req, res) => {
-  let sql;
   let blogId = Number(req.query.blogId);
-  sql = `select 
-  b.id as id, b.title, b.body, b.created, b.updated, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
-  from blog b
-  left join blog_tag btg on btg.blog_id = b.id
-  left join tag on btg.tag_id = tag.id
-  left join blog_thumnail bt on b.id = bt.blog_id
-  left join blog_category bc on b.id = bc.blog_id
-  left join img on bt.img_id = img.id
-  left join category cate on bc.category_id = cate.id
-  where b.id = ?`;
-  const result = await db.query(sql, [blogId]);
-  
+  let query;
+  query = sql.getContent;
+  let result = await db.query(query, [blogId]);
+  // 成形
+  result = mold(result);
+  console.log(result);
   res.send(result);
 });
 
