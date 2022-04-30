@@ -1,12 +1,12 @@
 <script setup>
-import BlogList from "./components/BlogList.vue";
 </script>
 
 
 <template>
   <v-app>
     <v-main>
-      <BlogList />
+      <router-view>
+      </router-view>
     </v-main>
   </v-app>
 </template>

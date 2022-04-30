@@ -1,18 +1,23 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { BlogFinder } from "../lib/BlogFinder.js";
 
 import BlogListCard from "./parts/BlogListCard.vue";
 import Pagination from "./parts/Pagination.vue";
 
+const route = useRoute();
 
 const bf = new BlogFinder();
 const blogDataList = ref("");
 const maxPage = ref("");
 
-onMounted(async() => [blogDataList.value, maxPage.value] = await bf.getFullData());
+onMounted(async () => [blogDataList.value, maxPage.value] = await bf.getFullData());
 
-const pnClick = async (page) => [blogDataList.value, maxPage.value] = await bf.getFullData(page);
+watch(route, async () => {
+  const page = route.query.page;
+  [blogDataList.value, maxPage.value] = await bf.getFullData(page);
+});
 
 </script>
 
@@ -28,8 +33,7 @@ const pnClick = async (page) => [blogDataList.value, maxPage.value] = await bf.g
         </li>
       </ul>
       <Pagination
-       :maxPage=maxPage
-       @pn-click=pnClick />
+       :maxPage=maxPage />
     </v-main>
   </v-app>
 </template>
