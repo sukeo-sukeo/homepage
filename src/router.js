@@ -6,7 +6,12 @@ const routes = [
   {
     path: "/",
     name: "BlogList",
-    component: BlogList
+    component: BlogList,
+  },
+  {
+    path: "/content",
+    name: "BlogContent",
+    component: () => import("./components/BlogContent.vue"),
   },
 ];
 

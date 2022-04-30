@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   page = page ? page : 1;
   const start = (page - 1) * parPage;
   sql = `select 
-  b.id as id, b.title, b.created, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
+  b.id as id, b.title, b.created, b.updated, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
   from blog b
   left join blog_tag btg on btg.blog_id = b.id
   left join tag on btg.tag_id = tag.id
@@ -34,10 +34,21 @@ router.get("/", async (req, res) => {
   res.send({ result, maxPage });
 });
 
-router.get("/name", async (req, res) => {
-  const sql = "select name from user";
-  const result = await db.query(sql);
-  // console.log(result);
+router.get("/content", async (req, res) => {
+  let sql;
+  let blogId = Number(req.query.blogId);
+  sql = `select 
+  b.id as id, b.title, b.body, b.created, b.updated, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
+  from blog b
+  left join blog_tag btg on btg.blog_id = b.id
+  left join tag on btg.tag_id = tag.id
+  left join blog_thumnail bt on b.id = bt.blog_id
+  left join blog_category bc on b.id = bc.blog_id
+  left join img on bt.img_id = img.id
+  left join category cate on bc.category_id = cate.id
+  where b.id = ?`;
+  const result = await db.query(sql, [blogId]);
+  
   res.send(result);
 });
 

@@ -12,6 +12,13 @@ class BlogFinder {
     const maxPage = result.data.maxPage;
     return [blogs, maxPage];
   }
+
+  async getBlog(blogId, url = URL) {
+    const result = await axios.get(url + "/content", { params: { blogId } });
+    console.log(result.data);
+    const blog = result.data[0];
+    return blog
+  }
 }
 
 export { BlogFinder };
