@@ -1,5 +1,6 @@
 <script setup>
 import { appOpt } from "../../config/app.js";
+import BlogTag from "./BlogTag.vue";
 
 const props = defineProps({
   blogData: Object
@@ -26,15 +27,11 @@ const url = appOpt.imgUrl;
         {{blogData.summary}}
       </v-card-text>
     </router-link>
-    <v-chip class="ma-1" size="x-small" v-for="tag in blogData.tags.split(',')" :key="tag">
-      {{tag}}
-    </v-chip>
+    <BlogTag
+     :tags="blogData.tags.split(',')" />
     <div class="d-flex">
       <v-card-text>
         {{blogData.created}}
-      </v-card-text>
-      <v-card-text>
-        {{blogData.updated}}
       </v-card-text>
     </div>
   </div>

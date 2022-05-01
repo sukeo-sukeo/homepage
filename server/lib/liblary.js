@@ -13,10 +13,10 @@ const mold = (dataList) => {
       data.body = data.body.replace('img src=".', 'img src="' + appOpt.imgUrl) : "";
     
     "created" in data ?
-      data.created = JSON.stringify(data.created).split("T")[0] : "";
+      data.created = JSON.stringify(data.created).split("T")[0].slice(1) : "";
     
     "updated" in data && JSON.stringify(data.updated).includes("T") ?
-      data.updated = JSON.stringify(data.updated).split("T")[0] : "";
+      data.updated = JSON.stringify(data.updated).split("T")[0].slice(1) : "";
   })
   return dataList
 }

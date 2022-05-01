@@ -5,6 +5,14 @@ import { BlogFinder } from "../lib/BlogFinder.js";
 
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-json'
+import 'prismjs/components/prism-liquid'
+import 'prismjs/components/prism-markdown'
+import 'prismjs/components/prism-markup-templating'
+import 'prismjs/components/prism-php'
+import 'prismjs/components/prism-scss'
 
 const route = useRoute();
 const router = useRouter();
@@ -29,24 +37,36 @@ if (blogId) {
 </script>
 
 <template>
-  <div>
+  <v-container>
     <h1>{{ content.title }}</h1>
+    <v-divider></v-divider>
+    <div class="d-flex justify-end align-baseline">
+      <span class="me-2">
+        <i class="bi bi-pencil"></i>
+        {{ content.created }}
+      </span>
+      <span class="text-caption">
+        <i class="bi bi-arrow-counterclockwise"></i>
+        {{ content.updated }}
+      </span>
+    </div>
+    <v-img :src="content.thumnail" :alt="content.thumnail_seo"></v-img>
     <div class="preview" v-html="content.body">
     </div>
-  </div>
+  </v-container>
 </template>
 
 <style scoped>
-/* .preview:deep(pre) {
-  padding-top: 15px;
+.preview:deep(pre) {
+  /* padding-top: 15px; */
   border-radius: 3px;
-  background: gainsboro;
+  /* background: gainsboro; */
 }
-.preview:deep(code) {
-  color: black;
-  background: gainsboro;
-  padding: 0 5px;
-} */
+/* .preview:deep(code) { */
+  /* color: black; */
+  /* background: gainsboro; */
+  /* padding: 0 5px; */
+/* } */
 
 .preview:deep(blockquote) {
     padding-left: 1em;
