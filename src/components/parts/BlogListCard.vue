@@ -15,7 +15,7 @@ const url = appOpt.imgUrl;
 
 <v-card class="ma-3 d-flex">
   <div>
-    <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="200"></v-img>
+    <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150"></v-img>
     <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
   </div>
   <div>
@@ -23,7 +23,7 @@ const url = appOpt.imgUrl;
       <v-card-title>
         {{blogData.title}}
       </v-card-title>
-      <v-card-text>
+      <v-card-text class="text-truncate">
         {{blogData.summary}}
       </v-card-text>
     </router-link>
@@ -40,6 +40,9 @@ const url = appOpt.imgUrl;
 </template>
 
 
-<style>
-
+<style scoped>
+a {
+  text-decoration: none;
+  color: black;
+}
 </style>

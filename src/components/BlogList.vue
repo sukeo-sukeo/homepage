@@ -25,7 +25,6 @@ watch(route, async () => {
 <template>
   <v-app>
     <v-main>
-      <h1>my blog site</h1>
       <ul>
         <li v-for="blogData in blogDataList" :key="blogData">
           <BlogListCard
