@@ -3,6 +3,9 @@ import { onMounted, ref} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { BlogFinder } from "../lib/BlogFinder.js";
 
+import Prism from "prismjs";
+import "prismjs/themes/prism.css";
+
 const route = useRoute();
 const router = useRouter();
 
@@ -14,7 +17,7 @@ if (blogId) {
   // 指定されたidがない場合の処理は未実装
   onMounted(async () => {
     content.value = await bf.getBlog(blogId);
-    hljs.highlightAll();
+    setTimeout(() => Prism.highlightAll(), 1)
   })
 } else {
   // id指定ない場合は一覧画面へ戻す
@@ -34,7 +37,7 @@ if (blogId) {
 </template>
 
 <style scoped>
-.preview:deep(pre) {
+/* .preview:deep(pre) {
   padding-top: 15px;
   border-radius: 3px;
   background: gainsboro;
@@ -43,7 +46,7 @@ if (blogId) {
   color: black;
   background: gainsboro;
   padding: 0 5px;
-}
+} */
 
 .preview:deep(blockquote) {
     padding-left: 1em;
@@ -109,7 +112,7 @@ if (blogId) {
     margin: 10px 0 15px 0;
     border-collapse: collapse;
   }
-.preview:deep(td), th {
+.preview:deep(td), .preview:deep(th) {
     border: 2px solid #ccb8a3;
     padding: 3px 10px;
   }
