@@ -1,5 +1,8 @@
 <script setup>
 import { appOpt } from "../../config/app.js";
+import { Utill } from "../../lib/util.js";
+const util = new Utill();
+
 import BlogTag from "./BlogTag.vue";
 
 const props = defineProps({
@@ -13,26 +16,29 @@ const url = appOpt.imgUrl;
 
 <template>
 
-<v-card class="ma-3 d-flex">
-  <div>
-    <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150"></v-img>
-    <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
-  </div>
-  <div>
-    <router-link :to="{path: '/content', query: {id: blogData.id}}">
-      <v-card-title>
-        {{blogData.title}}
-      </v-card-title>
-      <v-card-text class="text-truncate">
-        {{blogData.summary}}
-      </v-card-text>
-    </router-link>
-    <BlogTag
-     :tags="blogData.tags.split(',')" />
-    <div class="d-flex">
-      <v-card-text>
-        {{blogData.created}}
-      </v-card-text>
+<v-card class="ma-3">
+  <router-link :to="{path: '/content', query: {id: blogData.id}}">
+    <v-card-title>
+      {{blogData.title}}
+    </v-card-title>
+  </router-link>
+  <div class="d-flex">
+    <div style="position: relative;">
+      <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150"></v-img>
+      <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
+    </div>
+    <div>
+      <BlogTag
+      :tags="blogData.tags.split(',')" />
+      <div class="d-flex">
+        <v-card-text>
+          <i class="bi bi-pencil"></i>
+          {{blogData.created}}
+        </v-card-text>
+      </div>
+      <div class="text-caption" style="overflow-wrap: anywhere;">
+        {{ util.cutChara(blogData.summary, 60) }}
+      </div>
     </div>
   </div>
 </v-card>

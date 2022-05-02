@@ -12,7 +12,10 @@ const bf = new BlogFinder();
 const blogDataList = ref("");
 const maxPage = ref("");
 
-onMounted(async () => [blogDataList.value, maxPage.value] = await bf.getFullData());
+onMounted(async () => {
+  const page = route.query.page;
+  [blogDataList.value, maxPage.value] = await bf.getFullData(page);
+});
 
 watch(route, async () => {
   const page = route.query.page;
