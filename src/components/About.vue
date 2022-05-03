@@ -24,7 +24,7 @@
   </p> 
   <br>
   <p>
-    中退した専門学校やその時期に触れた、少しの<a href="https://github.com/sukeo-sukeo" target="_blank" style="text-decoration:underline; color: white;">プログラミング経験</a>は今の生活に非常に役立っています。私のストーリーに起こった出来事はすべて必然的に今の私に繋がっていると感じています。
+    中退した専門学校やその時期に触れた、少しの<a href="https://github.com/sukeo-sukeo" target="_blank">プログラミング経験</a>は今の生活に非常に役立っています。私のストーリーに起こった出来事はすべて必然的に今の私に繋がっていると感じています。
   </p>
   <br>
   <p>ほか、私は年間１００冊の本を読む変態です。（流し読み含む）</p>
@@ -81,7 +81,7 @@
   <p class="text-caption ms-3">...このサイトのコンテンツを管理するシステムです!</p>
   <br>
   <p>いくつかのブラウザゲームやシステム</p>
-  <p class="text-caption ms-3">...動くもの動かないもの含め学習の過程で<a href="https://github.com/sukeo-sukeo" target="_blank" style="text-decoration:underline; color: white;">多くのリポジトリ</a>を作成しています!</p>
+  <p class="text-caption ms-3">...動くもの動かないもの含め学習の過程で<a href="https://github.com/sukeo-sukeo" target="_blank">多くのリポジトリ</a>を作成しています!</p>
   <br>
   <br>
   <p>お見せできるものはお見せします😆</p>
@@ -89,4 +89,8 @@
 </template>
 
 <style scoped>
+a {
+  text-decoration: underline;
+  color: white;
+}
 </style>

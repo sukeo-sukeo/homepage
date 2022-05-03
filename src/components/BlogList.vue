@@ -26,16 +26,20 @@ watch(route, async () => {
 
 
 <template>
-  <v-app>
-    <v-main>
-      <ul>
-        <li v-for="blogData in blogDataList" :key="blogData">
-          <BlogListCard
-           :blogData=blogData />
-        </li>
-      </ul>
-      <Pagination
-       :maxPage=maxPage />
-    </v-main>
-  </v-app>
+  <v-col class="pa-0 mx-auto" md="8">
+    <ul>
+      <li v-for="blogData in blogDataList" :key="blogData">
+        <BlogListCard
+          :blogData=blogData />
+      </li>
+    </ul>
+    <Pagination
+      :maxPage=maxPage />
+  </v-col>
 </template>
+
+<style scoped>
+li {
+  list-style: none;
+}
+</style>

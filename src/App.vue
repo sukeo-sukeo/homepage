@@ -14,3 +14,7 @@ import Footer from "./components/shared/Footer.vue";
     </v-main>
   </v-app>
 </template>
+
+<style scoped>
+
+</style>
