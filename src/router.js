@@ -16,6 +16,11 @@ const routes = [
     component: () => import("./components/BlogContent.vue"),
   },
   {
+    path: "/search",
+    name: "SearchResult",
+    component: () => import("./components/SearchResult.vue"),
+  },
+  {
     path: "/contact",
     name: "Contact",
     component: Contact,

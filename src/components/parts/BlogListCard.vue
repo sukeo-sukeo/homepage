@@ -29,7 +29,7 @@ const url = appOpt.imgUrl;
     </div>
     <div>
       <BlogTag
-      :tags="blogData.tags.split(',')" />
+      :tags="blogData.tags ? blogData.tags.split(',') : ['hoge','foo']" />
       <div class="d-flex">
         <v-card-text>
           <i class="bi bi-pencil"></i>

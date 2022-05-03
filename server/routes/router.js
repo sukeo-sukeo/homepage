@@ -5,10 +5,10 @@ import { sql } from "../lib/sql.js";
 import { mold } from "../lib/liblary.js";
 
 const router = express.Router();
+const parPage = appOpt.parPage;
 
 router.get("/", async (req, res) => {
   let page = Number(req.query.page);
-  let parPage = appOpt.parPage;
   let query;
 
   // parPage分の件数のデータを取得
@@ -38,5 +38,18 @@ router.get("/content", async (req, res) => {
   console.log(result);
   res.send(result);
 });
+
+router.get("/search", async (req, res) => {
+  const keyword = req.query.keyword;
+  const options = req.query.options;
+  let query;
+
+  console.log(keyword);
+  console.log(options);
+  query = sql.searchBlog;
+  let result = await db.query(query);
+  result = mold(result);
+  res.send(result);
+})
 
 export { router };

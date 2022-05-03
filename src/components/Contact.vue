@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="bg-black text-white pb-10">
+<div class="bg-black text-white py-10" style="height: 70vh;">
   <h2>CONTACTING ME</h2>
   <br>
   <p>
