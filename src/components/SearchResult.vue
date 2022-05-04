@@ -1,14 +1,14 @@
 <script setup>
 import { onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { BlogFinder } from "../lib/BlogFinder.js";
 
 import BlogListCard from "./parts/BlogListCard.vue";
 
 const route = useRoute();
-const router = useRouter();
 
 const bf = new BlogFinder();
+
 const blogDataList = ref("");
 
 const doSearch = async () => {

@@ -1,19 +1,23 @@
 <script setup>
+import { ref } from "vue";
 import BlogSearch from "../parts/BlogSearch.vue";
 
 const emits = defineEmits([
   "search-word"
 ]);
 
-const listeners = (keyword, options) => emits("search-word", keyword, options)
+const listeners = (keyword, options) => emits("search-word", keyword, options);
+
+const headerHeight = ref(100);
+const changeHeight = (showOptions) => showOptions ? headerHeight.value = 200 : headerHeight.value = 100;
 
 </script>
 
 <template>
     <v-toolbar
       elevation="4"
-      class="bg-black ps-0 d-flex"
-      height="100"
+      class="bg-black ps-0 pb-3 d-flex"
+      :height="headerHeight"
     >
     <div class="d-flex flex-column justify-space-between w-75" style="height: inherit; max-width: 250px;">
       <div class="mt-2">
@@ -24,7 +28,8 @@ const listeners = (keyword, options) => emits("search-word", keyword, options)
         </v-toolbar-title>
       </div>
       <div>
-        <BlogSearch @search-word="listeners" />
+        <BlogSearch @search-word="listeners"
+        @show-options="changeHeight" />
       </div>
     </div>
       <!-- <v-spacer></v-spacer> -->
