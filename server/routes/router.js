@@ -43,12 +43,42 @@ router.get("/search", async (req, res) => {
   const keyword = req.query.keyword;
   const options = req.query.options;
   let query;
+  let table;
+  let where;
+  let blogIdList;
 
   console.log(keyword);
   console.log(options);
-  query = sql.searchBlog;
-  let result = await db.query(query);
-  result = mold(result);
+  
+  if (
+    options.includes("body") ||
+    options.includes("title") ||
+    options.includes("summary")
+  ) {
+    table = 'blog';
+    query = sql.search_getBlogId;
+    // blogidlistにblogidを追加
+  }
+  
+  if (options.includes("category")) {
+    table = 'category'
+    // blogidlistにblogidを追加
+  }
+  if (options.includes("tag")) {
+    table = 'tag'
+    // blogidlistにblogidを追加
+  }
+  console.log(blogIdList);
+  console.log(blogIdList.length);
+  
+  if (!blogIdList.length) {
+    res.send("SORRY NO HIT...");
+    return
+  }
+  
+  // blogidに該当するデータを取得
+  // let result
+  // result = mold(result);
   res.send(result);
 })
 
