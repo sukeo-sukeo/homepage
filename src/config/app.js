@@ -4,7 +4,7 @@ const appOpt = {
   paginationDisplayMax: () => Math.floor(
     document.body.clientWidth / appOpt.paginationButtonSize
   ),
-  searchOptions: ["body", "summary", "category", "tag", "thumnail"]
+  searchOptions: ["body", "title", "summary", "category", "tag"]
 };
 
 

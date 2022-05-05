@@ -22,13 +22,11 @@ const sql = {
   left join img on bt.img_id = img.id
   left join category cate on bc.category_id = cate.id
   where b.id = ?`,
-  search_getBlogId: `select
-  id from ?? where ??`,
 };
 
 export { sql };
 
 
 // (SELECT b.id
-// FROM blog b 
+// FROM blog b
 // WHERE b.body LIKE '%捕鯨%' OR b.title LIKE '%捕鯨%' OR b.summary LIKE '%捕鯨%')
