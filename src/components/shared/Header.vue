@@ -9,7 +9,7 @@ const emits = defineEmits([
 const listeners = (keyword, options) => emits("search-word", keyword, options);
 
 const headerHeight = ref(100);
-const changeHeight = (showOptions) => showOptions ? headerHeight.value = 200 : headerHeight.value = 100;
+const changeHeight = (showOptions) => showOptions ? headerHeight.value = 220 : headerHeight.value = 100;
 
 </script>
 

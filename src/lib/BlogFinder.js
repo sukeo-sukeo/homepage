@@ -15,7 +15,6 @@ class BlogFinder {
 
   async getBlog(blogId, url = URL) {
     const result = await axios.get(url + "/content", { params: { blogId } });
-    console.log(result.data);
     const blog = result.data[0];
     return blog
   }
@@ -24,8 +23,10 @@ class BlogFinder {
     const result = await axios.get(url + "/search", {
       params: { keyword, options }
     });
-    const blogs = result.data
-    return blogs;
+    console.log(result);
+    const blogs = result.data.result;
+    const hit = result.data.hit
+    return [blogs, hit];
   }
 }
 
