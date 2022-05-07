@@ -27,11 +27,11 @@ const url = appOpt.imgUrl;
       <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150"></v-img>
       <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
     </div>
-    <div>
+    <div class="ms-1">
       <BlogTag
       :tags="blogData.tags ? blogData.tags.split(',') : ['notice']" />
       <div class="d-flex">
-        <v-card-text>
+        <v-card-text class="pa-0 py-1 ps-2">
           <i class="bi bi-pencil"></i>
           {{blogData.created}}
         </v-card-text>

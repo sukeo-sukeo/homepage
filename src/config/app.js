@@ -1,6 +1,6 @@
 const appOpt = {
-  // url: "http://localhost:3040/api",
-  url: "https://sukeo.live-on.net/api",
+  url: "http://localhost:3040/api",
+  // url: "https://sukeo.live-on.net/api",
   title: "Sukeo",
   paginationButtonSize: 50,
   paginationDisplayMax: () =>

@@ -1,6 +1,6 @@
 const sql = {
   getFullData: `select 
-  b.id as id, b.title, b.created, b.updated, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
+  b.id as id, b.title, b.created, b.updated, b.summary, b.published, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
   from blog b
   left join blog_tag btg on btg.blog_id = b.id
   left join tag on btg.tag_id = tag.id
@@ -8,12 +8,13 @@ const sql = {
   left join blog_category bc on b.id = bc.blog_id
   left join img on bt.img_id = img.id
   left join category cate on bc.category_id = cate.id
+  where b.published = 'true' 
   group by b.id
   order by b.created desc
   limit ?, ?`,
-  getFullDataCount: `select count(*) as cnt from blog`,
+  getFullDataCount: `select count(*) as cnt from blog where blog.published = 'true'`,
   getContent: `select 
-  b.id as id, b.title, b.body, b.created, b.updated, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
+  b.id as id, b.title, b.body, b.created, b.updated, b.published, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
   from blog b
   left join blog_tag btg on btg.blog_id = b.id
   left join tag on btg.tag_id = tag.id
@@ -21,9 +22,9 @@ const sql = {
   left join blog_category bc on b.id = bc.blog_id
   left join img on bt.img_id = img.id
   left join category cate on bc.category_id = cate.id
-  where b.id = ?`,
+  where b.id = ? and b.published = 'true'`,
   getBlogListFromIdList: `select 
-  b.id as id, b.title, b.created, b.updated, b.summary, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
+  b.id as id, b.title, b.created, b.updated, b.summary, b.published, bt.thumnail_seo, cate.name as category, group_concat(tag.name) as tags, img.path as thumnail
   from blog b
   left join blog_tag btg on btg.blog_id = b.id
   left join tag on btg.tag_id = tag.id
@@ -31,10 +32,10 @@ const sql = {
   left join blog_category bc on b.id = bc.blog_id
   left join img on bt.img_id = img.id
   left join category cate on bc.category_id = cate.id
-  where b.id in (?)
+  where b.id in (?) and b.published = 'true'
   group by b.id
   order by b.created desc`,
-  createSearchQuery: (table, options=null) => {
+  createSearchQuery: (table, options = null) => {
     let query;
 
     switch (table) {
@@ -42,7 +43,8 @@ const sql = {
         query = options
           .filter((o) => o === "body" || o === "title" || o === "summary")
           .reduce(
-            (prev, curr) => (prev += `${table}.${curr} like concat('%', ?, '%') or `),
+            (prev, curr) =>
+              (prev += `${table}.${curr} like concat('%', ?, '%') or `),
             ""
           );
         query = query.substring(0, query.length - 3);
