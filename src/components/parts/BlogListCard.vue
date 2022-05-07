@@ -29,7 +29,7 @@ const url = appOpt.imgUrl;
     </div>
     <div>
       <BlogTag
-      :tags="blogData.tags ? blogData.tags.split(',') : ['hoge','foo']" />
+      :tags="blogData.tags ? blogData.tags.split(',') : ['notice']" />
       <div class="d-flex">
         <v-card-text>
           <i class="bi bi-pencil"></i>
@@ -37,7 +37,7 @@ const url = appOpt.imgUrl;
         </v-card-text>
       </div>
       <div class="text-caption" style="overflow-wrap: anywhere;">
-        {{ util.cutChara(blogData.summary, 60) }}
+        {{ util.cutChara(blogData.summary, appOpt.summaryCharMax) }}
       </div>
     </div>
   </div>

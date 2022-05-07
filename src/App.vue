@@ -6,7 +6,6 @@ import { ref } from "vue";
 const keyword = ref("");
 const options = ref("");
 const listeners = (...args) => {
-  console.log(args);
   keyword.value = args[0];
   options.value = args[1];
 }

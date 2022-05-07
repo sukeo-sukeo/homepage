@@ -10,6 +10,6 @@ const port = appOpt.port || 3040;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use("/", router);
+app.use(appOpt.apiUrl + "/", router);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
