@@ -54,20 +54,22 @@ router.get("/search", async (req, res) => {
     options.includes("summary")
   ) {
     const table = "blog";
-    const query = sql.createSearchQuery(table, keyword, options);
-    blogIdList.push(await db.query(query));
+    const query = sql.createSearchQuery(table, options);
+    const keywords = new Array(options.length).fill(keyword);
+    blogIdList.push(
+      await db.query(query, keywords));
   }
   
   if (options.includes("category")) {
     const table = 'category';
-    const query = sql.createSearchQuery(table, keyword, options);
-    blogIdList.push(await db.query(query));
+    const query = sql.createSearchQuery(table);
+    blogIdList.push(await db.query(query, [keyword]));
   }
 
   if (options.includes("tag")) {
     const table = 'tag';
-    const query = sql.createSearchQuery(table, keyword, options);
-    blogIdList.push(await db.query(query));
+    const query = sql.createSearchQuery(table);
+    blogIdList.push(await db.query(query, [keyword]));
   }
   
   // 多次元配列→一次元

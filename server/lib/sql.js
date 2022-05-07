@@ -34,7 +34,7 @@ const sql = {
   where b.id in (?)
   group by b.id
   order by b.created desc`,
-  createSearchQuery: (table, keyword, options) => {
+  createSearchQuery: (table, options=null) => {
     let query;
 
     switch (table) {
@@ -42,18 +42,17 @@ const sql = {
         query = options
           .filter((o) => o === "body" || o === "title" || o === "summary")
           .reduce(
-            (prev, curr) =>
-              (prev += `${table}.${curr} like '%${keyword}%' or `),
+            (prev, curr) => (prev += `${table}.${curr} like concat(?, '%') or `),
             ""
           );
         query = query.substring(0, query.length - 3);
         query = `select id from ${table} where ${query}`;
         break;
       case "category":
-        query = `select bc.blog_id from blog_category bc where bc.category_id in (select cate.id from ${table} cate where cate.name like '%${keyword}%')`;
+        query = `select bc.blog_id from blog_category bc where bc.category_id in (select cate.id from ${table} cate where cate.name like concat(?, '%'))`;
         break;
       case "tag":
-        query = `select btg.blog_id from blog_tag btg where btg.tag_id in (select tag.id from ${table} where tag.name like '%${keyword}%')`;
+        query = `select btg.blog_id from blog_tag btg where btg.tag_id in (select tag.id from ${table} where tag.name like concat(?, '%'))`;
         break;
       default:
         break;
