@@ -35,7 +35,6 @@ router.get("/content", async (req, res) => {
   let result = await db.query(query, [blogId]);
   // 成形
   result = mold(result);
-  console.log(result);
   res.send(result);
 });
 
@@ -44,9 +43,6 @@ router.get("/search", async (req, res) => {
   let options = req.query.options;
   if (typeof options === "string") options = [options];
   let blogIdList = [];
-
-  console.log(keyword);
-  console.log(options);
 
   if (
     options.includes("body") ||

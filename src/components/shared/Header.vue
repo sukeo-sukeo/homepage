@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import BlogSearch from "../parts/BlogSearch.vue";
+import { appOpt } from "../../config/app.js";
 
 const emits = defineEmits([
   "search-word"
@@ -8,8 +9,8 @@ const emits = defineEmits([
 
 const listeners = (keyword, options) => emits("search-word", keyword, options);
 
-const headerHeight = ref(100);
-const changeHeight = (showOptions) => showOptions ? headerHeight.value = 220 : headerHeight.value = 100;
+const headerHeight = ref(appOpt.searchingHeaderHeight);
+const changeHeight = (showOptions) => showOptions ? headerHeight.value = appOpt.defaultHeaderHeight : headerHeight.value = appOpt.searchingHeaderHeight;
 
 </script>
 
@@ -23,7 +24,7 @@ const changeHeight = (showOptions) => showOptions ? headerHeight.value = 220 : h
       <div class="mt-2">
         <v-toolbar-title class="align-self-start" style="position: fixed; z-index: 100;">
           <router-link to="/">
-            Sukeo
+            {{ appOpt.title }}
           </router-link>
         </v-toolbar-title>
       </div>

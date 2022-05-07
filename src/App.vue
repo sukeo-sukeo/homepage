@@ -25,6 +25,10 @@ const listeners = (...args) => {
   </v-app>
 </template>
 
-<style scoped>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
 
+#app {
+  font-family: 'Kosugi Maru', sans-serif;
+}
 </style>

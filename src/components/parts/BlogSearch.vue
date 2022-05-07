@@ -37,6 +37,7 @@ watch(route, async () => {
       ></v-text-field>
       <i v-show="showOptions"  @click="router.push({path: '/search', query:{keyword, options}})" class="bi bi-search" style="position: absolute; right: 0;"></i>
     </div>
+   
     <div class="d-flex flex-wrap"
      v-if="showOptions">
       <v-checkbox

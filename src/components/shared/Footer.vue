@@ -31,4 +31,7 @@ import avatar from '../../assets/image/avatar.jpg';
 /* .v-toolbar:deep(.v-toolbar__content) {
   padding-top: 0;
 } */
+.v-toolbar {
+  height: 60vh;
+}
 </style>

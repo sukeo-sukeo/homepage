@@ -63,8 +63,3 @@ const sql = {
 };
 
 export { sql };
-
-
-// (SELECT b.id
-// FROM blog b
-// WHERE b.body LIKE '%捕鯨%' OR b.title LIKE '%捕鯨%' OR b.summary LIKE '%捕鯨%')
