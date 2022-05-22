@@ -22,8 +22,8 @@ const url = appOpt.imgUrl;
       {{blogData.title}}
     </v-card-title>
   </router-link>
-  <div class="d-flex">
-    <div style="position: relative;">
+  <div class="d-flex" style="position: relative;">
+    <div class="align-self-center" >
       <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150"></v-img>
       <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
     </div>
@@ -36,9 +36,11 @@ const url = appOpt.imgUrl;
           {{blogData.created}}
         </v-card-text>
       </div>
-      <div class="text-caption" style="overflow-wrap: anywhere;">
-        {{ util.cutChara(blogData.summary, appOpt.summaryCharMax) }}
-      </div>
+      <router-link :to="{path: '/content', query: {id: blogData.id}}">
+        <div class="text-caption" style="overflow-wrap: anywhere;">
+          {{ util.cutChara(blogData.summary, appOpt.summaryCharMax) }}
+        </div>
+      </router-link>
     </div>
   </div>
 </v-card>

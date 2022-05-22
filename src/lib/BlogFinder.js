@@ -8,6 +8,7 @@ class BlogFinder {
     const result = await axios.get(url, { params: { page } });
     const blogs = result.data.result;
     const maxPage = result.data.maxPage;
+   
     return [blogs, maxPage];
   }
 

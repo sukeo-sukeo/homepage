@@ -23,7 +23,8 @@ router.get("/", async (req, res) => {
   // maxpageを計算
   query = sql.getFullDataCount;
   const count = await db.query(query);
-  const maxPage = Math.floor((count[0].cnt + 1) / parPage + 1);
+ 
+  const maxPage = Math.ceil(count[0].cnt / parPage);
 
   res.send({ result, maxPage });
 });
