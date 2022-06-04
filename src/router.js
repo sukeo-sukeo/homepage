@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { appOpt } from "./config/app.js"; 
 
 import BlogList from "./components/BlogList.vue";
 import Contact from "./components/Contact.vue";

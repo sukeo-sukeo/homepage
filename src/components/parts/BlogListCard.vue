@@ -24,7 +24,7 @@ const url = appOpt.imgUrl;
   </router-link>
   <div class="d-flex" style="position: relative;">
     <div class="align-self-center" >
-      <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150"></v-img>
+      <v-img :src="blogData.thumnail" :alt="blogData.thumnail_seo" width="150" height="150"></v-img>
       <v-card class="text-caption px-1 ma-1" style="position: absolute; top: 0; opacity: .9;">{{ blogData.category }}</v-card>
     </div>
     <div class="ms-1">

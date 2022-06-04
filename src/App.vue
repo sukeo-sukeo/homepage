@@ -16,9 +16,11 @@ const listeners = (...args) => {
   <v-app>
     <v-main style="border: solid 15px black;">
       <Header @search-word="listeners"/>
+
       <router-view 
       :keyword="keyword" :options="options">
       </router-view>
+      
       <Footer />
     </v-main>
   </v-app>
@@ -30,4 +32,6 @@ const listeners = (...args) => {
 #app {
   font-family: 'Kosugi Maru', sans-serif;
 }
+
+
 </style>

@@ -24,6 +24,7 @@ watch(route, async () => doSearch());
 
 
 <template>
+
   <v-col class="pa-0 mx-auto" md="8">
     <ul>
       <li v-for="blogData in blogDataList" :key="blogData">
@@ -34,10 +35,12 @@ watch(route, async () => doSearch());
     <Pagination
       :maxPage=maxPage />
   </v-col>
+  
 </template>
 
 <style scoped>
 li {
   list-style: none;
 }
+
 </style>

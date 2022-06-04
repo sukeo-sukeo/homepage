@@ -2,6 +2,7 @@
 import { onMounted, ref} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { BlogFinder } from "../lib/BlogFinder.js";
+import TopByuunBtn from "./parts/TopByuunBtn.vue"
 
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
@@ -19,8 +20,8 @@ const router = useRouter();
 
 const bf = new BlogFinder();
 const content = ref("")
-
 const blogId = route.query.id;
+
 if (blogId) {
   // 指定されたidがない場合の処理は未実装
   onMounted(async () => {
@@ -53,6 +54,9 @@ if (blogId) {
     <v-img :src="content.thumnail" :alt="content.thumnail_seo"></v-img>
     <div class="preview" v-html="content.body">
     </div>
+    
+    <TopByuunBtn />
+
   </v-container>
 </template>
 
@@ -140,4 +144,5 @@ if (blogId) {
     padding: 5px 10px;
     background: #ccb8a3a3;
   }
+
 </style>
