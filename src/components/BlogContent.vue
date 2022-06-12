@@ -61,35 +61,42 @@ if (blogId) {
 </template>
 
 <style scoped>
-.preview:deep(pre) {
-  /* padding-top: 15px; */
-  border-radius: 3px;
-  /* background: gainsboro; */
+/* 行間 */
+.preview:deep(li), .preview:deep(p) {
+  line-height: 1.8;
 }
-/* .preview:deep(code) { */
-  /* color: black; */
-  /* background: gainsboro; */
-  /* padding: 0 5px; */
-/* } */
+
+.preview:deep(pre) {
+  border-radius: 3px;
+}
+
+.preview:deep(code) {
+  color: black;
+  background: #f5f2f0;
+  padding: 0 5px;
+  border-radius: 2px;
+}
 
 .preview:deep(blockquote) {
+    font-family: 'Roboto';
     padding-left: 1em;
     margin: 0;
     color: .666666db;
     border-left: 0.5em lightblue solid;
+    font-size: .8em;
   }
 
-.preview:deep(p) {
-    margin: 1em 0;
+.preview:deep(p):not(h2 + p, h3 + p, pre + p) {
+    margin-top: 2em;
   }
+
+.preview:deep(blockquote > p) {
+  margin-top: 1em !important;
+}
 
 .preview:deep(img) {
     max-width: 100%;
   }
-
-/* .preview:deep(p) > img {
-    max-width: 60%;
-  } */
 
 .preview:deep(h1), h2, h3, h4, h5, h6 {
     font-weight: normal;
@@ -102,19 +109,21 @@ if (blogId) {
     font-size: 2.5em;
   }
 .preview:deep(h2) {
+    margin-top: 3rem;
     font-size: 2em;
   }
 .preview:deep(h3) {
-    font-size: 1.5em;
+    font-size: 1.2em;
+    margin-top: 1rem;
   }
 .preview:deep(h4) {
-    font-size: 1.2em;
+    font-size: 1.0em;
   }
 .preview:deep(h5) {
-    font-size: 1em;
+    font-size: 0.9em;
   }
 .preview:deep(h6) {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 
 .preview:deep(ol) {
